@@ -18,7 +18,7 @@ O programa irá:
 - Exibir um resumo da alocação
 
 ---
-## Como Rodar os Testes Unitários
+## Como rodar os Testes Unitários
 
 O projeto utiliza o módulo `unittest` da biblioteca padrão.
 
@@ -33,7 +33,7 @@ python -m unittest tests/test_simulador.py
 ```
 
 ---
-## O Que os Testes Validam
+## O que os Testes Validam
 - Cálculo de distância
 - Cálculo de rota mínima estimada
 - Alocação de pedidos em viagens
@@ -41,11 +41,5 @@ python -m unittest tests/test_simulador.py
 
 ---
 ## Melhorias Futuras
-- Algoritmos de roteamento mais eficientes (Clarke-Wright, 2-opt, simulated annealing)
-- Entrada de pedidos via JSON ou CSV
-- Sistema de relatório e métricas
-- Interface gráfica para visualização das rotas
-
----
-## Licença
-Este projeto pode ser utilizado livremente para fins acadêmicos e de prototipação.
+- Entrada de pedidos
+- Interface para visualização das rotas
