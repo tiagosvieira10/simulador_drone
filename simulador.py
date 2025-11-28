@@ -138,3 +138,30 @@ def summarize_allocation(trips: List[Trip], drones_allocation: List[List[Trip]],
             est = estimate_min_route(depot, coords)
             print(f"  Trip {j}: orders={ids}, weight={w:.2f}kg, est_route={est:.2f}km, coords={coords}")
 
+# Exemplo de uso com dados amostrais
+if __name__ == '__main__':
+    
+    DRONES_COUNT = 3
+    DRONE_CAPACITY = 5.0  # kg
+    DRONE_RANGE_KM = 20.0  # km/carga
+    DEPOT = (0.0, 0.0)
+
+    # Gerar pedidos de exemplo
+    random.seed(42)
+    orders_sample: List[Order] = []
+    for i in range(1, 21):
+        x = random.uniform(-6, 6)
+        y = random.uniform(-6, 6)
+        weight = random.choice([0.5, 1.0, 1.5, 2.0])
+        priority = random.choices(["alta", "media", "baixa"], weights=[0.2,0.3,0.5])[0]
+        orders_sample.append(Order(id=i, x=x, y=y, weight=weight, priority=priority))
+
+    print("Parâmetros:")
+    print(f"  drones={DRONES_COUNT}, capacity={DRONE_CAPACITY}kg, range={DRONE_RANGE_KM}km\n")
+
+    try:
+        trips = allocate_trips(orders_sample, DRONE_CAPACITY, DRONE_RANGE_KM, depot=DEPOT)
+        drones_alloc = assign_trips_to_drones(trips, DRONES_COUNT)
+        summarize_allocation(trips, drones_alloc, depot=DEPOT)
+    except ValueError as e:
+        print("Erro ao alocar pedidos:", e)
